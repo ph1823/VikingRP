@@ -1,0 +1,16 @@
+[
+{
+  "modid": "vikingrp",
+  "name": "VikingRP",
+  "description": "Create by ph1823.",
+  "version": "${version}",
+  "mcversion": "${mcversion}",
+  "url": "",
+  "updateUrl": "",
+  "authorList": ["ph1823"],
+  "credits": "The Forge and FML guys, for making this example",
+  "logoFile": "",
+  "screenshots": [],
+  "dependencies": []
+}
+]
