@@ -1,2 +1,4 @@
-rootProject.name = 'VikingRP'
-
+rootProject.name = 'vikingrp'
+include('forge', 'bukkit')
+//org.gradle.jvmargs=-Xmx4G
+//org.gradle.daemon=false

@@ -1,0 +1,89 @@
+plugins {
+    id 'java'
+}
+
+java {
+    toolchain.languageVersion.set(JavaLanguageVersion.of(11))
+}
+
+repositories {
+    mavenCentral()
+    maven {
+        url = 'https://hub.spigotmc.org/nexus/content/repositories/snapshots/'
+
+        // As of Gradle 5.1, you can limit this to only those
+        // dependencies you expect from it
+        content {
+            includeGroup 'org.bukkit'
+            includeGroup 'org.spigotmc'
+        }
+    }
+    /*
+     As Spigot-API depends on the BungeeCord ChatComponent-API,
+    we need to add the Sonatype OSS repository, as Gradle,
+    in comparison to maven, doesn't want to understand the ~/.m2
+    directory unless added using mavenLocal(). Maven usually just gets
+    it from there, as most people have run the BuildTools at least once.
+    This is therefore not needed if you're using the full Spigot/CraftBukkit,
+    or if you're using the Bukkit API.
+    */
+    maven { url = 'https://oss.sonatype.org/content/repositories/snapshots' }
+    maven { url = 'https://oss.sonatype.org/content/repositories/central' }
+    //mavenLocal() // This is needed for CraftBukkit and Spigot.
+}
+
+dependencies {
+    // Pick only one of these and read the comment in the repositories block.
+    compileOnly 'org.spigotmc:spigot-api:1.12.2-R0.1-SNAPSHOT' // The Spigot API with no shadowing. Requires the OSS repo.
+
+}
+
+processResources {
+    filesMatching("plugin.yml") {
+        expand "version": version,
+                "bukkit_api_version": bukkit_api_version
+    }
+}
+
+sourceSets {
+    template {
+        java {
+            srcDir 'src/template/java'
+        }
+    }
+    main {
+        compileClasspath += sourceSets.template.output
+        runtimeClasspath += sourceSets.template.output
+    }
+}
+
+
+tasks.register('copyJarToServer') {
+    doLast {
+        delete {
+            delete "${projectDir}/run/plugins/${archivesBaseName}-${version}.jar"
+        }
+        copy {
+            from "${buildDir}/libs/${archivesBaseName}-${version}.jar"
+            into "${projectDir}/run/plugins"
+        }
+    }
+}
+
+build.finalizedBy(copyJarToServer)
+
+tasks.register('runServer') {
+    doLast {
+        javaexec {
+            debug = true
+            workingDir = "${projectDir}/run"
+            main = "-jar";
+            args = [
+                    "${projectDir}/run/spigot.jar",
+                    "nogui"
+            ]
+        }
+    }
+}
+
+runServer.dependsOn(build)

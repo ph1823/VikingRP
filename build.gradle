@@ -1,19 +1,43 @@
 plugins {
-    id 'java'
+    id "java"
 }
 
-group 'org.example'
-version '1.0-SNAPSHOT'
-
-repositories {
-    mavenCentral()
+tasks.register('register', GradleBuild) {
+    group = 'vikingrp'
+    tasks = [
+            ':forge:clean',
+            ':bukkit:clean',
+            ':forge:forgeUpdate',
+            ':bukkit:build'
+    ]
 }
 
-dependencies {
-    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
-    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+tasks.register('publishBukkit', GradleBuild) {
+    group = 'vikingrp'
+    tasks = [
+            ':bukkit:clean'
+    ]
 }
 
-test {
-    useJUnitPlatform()
+
+tasks.register('forgeClient', GradleBuild) {
+    group = 'vikingrp'
+    tasks = [
+            ':forge:runClient'
+    ]
+}
+
+tasks.register('forgeServer', GradleBuild) {
+    group = 'vikingrp'
+    tasks = [
+            ':forge:runServer'
+    ]
+}
+
+tasks.register('cleanAll', GradleBuild) {
+    group = 'vikingrp'
+    tasks = [
+            ':forge:clean',
+            ':bukkit:clean',
+    ]
 }
