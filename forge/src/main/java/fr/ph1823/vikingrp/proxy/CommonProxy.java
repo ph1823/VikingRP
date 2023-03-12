@@ -1,8 +1,8 @@
 package fr.ph1823.vikingrp.proxy;
 
-import fr.ph1823.vikingrp.DefaultCapability;
-import fr.ph1823.vikingrp.IVikingRPCapability;
-import fr.ph1823.vikingrp.VikingRPStorage;
+import fr.ph1823.vikingrp.capacity.DefaultCapability;
+import fr.ph1823.vikingrp.capacity.IVikingRPCapability;
+import fr.ph1823.vikingrp.capacity.VikingRPStorage;
 import net.minecraftforge.common.capabilities.CapabilityManager;
 
 public interface CommonProxy {
