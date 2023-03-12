@@ -2,6 +2,7 @@ package fr.ph1823.vikingrp;
 
 import fr.ph1823.vikingrp.event.AttachTruc;
 import fr.ph1823.vikingrp.event.PlayerInteractListener;
+import fr.ph1823.vikingrp.packet.PlayerDeathPacket;
 import fr.ph1823.vikingrp.proxy.CommonProxy;
 import net.minecraft.entity.Entity;
 import net.minecraft.init.Blocks;
@@ -15,6 +16,7 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
+import net.minecraftforge.fml.relauncher.Side;
 import org.apache.logging.log4j.Logger;
 
 @Mod(modid = VikingRPMod.MODID, name = VikingRPMod.NAME, version = VikingRPMod.VERSION)
@@ -37,6 +39,8 @@ public class VikingRPMod
     {
         logger = event.getModLog();
         proxy.preInit();
+        VikingRPNetwork.CHANNEL.registerMessage(PlayerDeathPacket.Handler.class, PlayerDeathPacket.class, 0, Side.CLIENT);
+
     }
 
     @EventHandler
