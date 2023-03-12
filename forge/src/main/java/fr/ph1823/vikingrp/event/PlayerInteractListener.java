@@ -1,6 +1,6 @@
 package fr.ph1823.vikingrp.event;
 
-import fr.ph1823.vikingrp.VikingRPStorage;
+import fr.ph1823.vikingrp.capacity.VikingRPStorage;
 import net.minecraftforge.event.entity.player.PlayerInteractEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 
