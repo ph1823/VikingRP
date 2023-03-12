@@ -1,4 +1,4 @@
-package fr.ph1823.vikingrp;
+package fr.ph1823.vikingrp.capacity;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.util.EnumFacing;

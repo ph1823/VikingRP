@@ -1,12 +1,10 @@
-package fr.ph1823.vikingrp;
+package fr.ph1823.vikingrp.capacity;
 
 import net.minecraft.nbt.NBTBase;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.util.EnumFacing;
 import net.minecraftforge.common.capabilities.Capability;
 import net.minecraftforge.common.capabilities.CapabilityInject;
-
-import javax.annotation.Nullable;
 
 public class VikingRPStorage implements Capability.IStorage <IVikingRPCapability> {
     @CapabilityInject(IVikingRPCapability.class)

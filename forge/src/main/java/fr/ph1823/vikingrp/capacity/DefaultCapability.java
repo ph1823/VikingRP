@@ -1,6 +1,4 @@
-package fr.ph1823.vikingrp;
-
-import fr.ph1823.vikingrp.IVikingRPCapability;
+package fr.ph1823.vikingrp.capacity;
 
 public class DefaultCapability implements IVikingRPCapability {
     private boolean revive = false;

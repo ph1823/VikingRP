@@ -1,4 +1,4 @@
-package fr.ph1823.vikingrp;
+package fr.ph1823.vikingrp.capacity;
 
 public interface IVikingRPCapability {
     public void setRevive(boolean revive);
